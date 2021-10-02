@@ -1,5 +1,6 @@
 require("vector")
 require("mover")
+require("stableblock")
 
 function love.load()
     width = love.graphics.getWidth()
@@ -13,6 +14,9 @@ function love.load()
     mover = Mover:create(location, velocity, 20, 1)
     wmover = Mover:create(wlocation, velocity, 50, 5)
     
+    --recBlue = Stateblock:create(width/3, height/3, width/4, height/4)
+    recBlue = Stableblock:create(50, 20, 100, 80)
+    --recRed = Stateblock:create()
 
     wind = Vector:create(0.01, 0)
     isWind = false
@@ -24,19 +28,19 @@ function love.load()
 end
 
 function love.update()
-    if isGravity then
-        mover:applyForce(gravity)
-        wmover:applyForce(gravity)
+    mover:applyForce(gravity)
+    wmover:applyForce(gravity)
 
-    end
-    if isWind then
-        mover:applyForce(wind)
-        wmover:applyForce(wind)
-    end
-    if isFloating then
-        mover:applyForce(floating)
-        wmover:applyForce(floating)
-    end
+    mover:applyForce(wind)
+    wmover:applyForce(wind)
+
+    --friction = (mover.velocity * -1):norm()
+    
+    --if friction then
+    --    friction:mul(0.005)
+    --   mover:applyForce(friction)
+    --    wmover:applyForce(friction)
+    --end
     mover:update()
     mover:checkBoundaries()
 
@@ -49,9 +53,22 @@ end
 function love.draw()
     mover:draw()
     wmover:draw()
+
+    recBlue:draw()
     love.graphics.print(tostring(mover.velocity),  mover.location.x + mover.size, mover.location.y)
     love.graphics.print(tostring(wmover.velocity),  wmover.location.x + wmover.size, wmover.location.y)
+
+    --love.graphics.rectangle("fill", width/3, height/3, width/20, height/20)
+    --love.graphics.setColor(r, g, b, a)
+
     love.graphics.print(" w: " .. tostring(isWind) .. " g: " .. tostring(isGravity) .. " f: " .. tostring(isFloating))
+    
+    --local r, g, b, a = love.graphics.getColor()
+
+    
+    --love.graphics.setColor(0, 119/255, 190/255, 0.5)
+    --love.graphics.rectangle("fill", width / 3, height / 3, width / 10, height / 10)
+    --love.graphics.setColor(r, g, b, a)
     
 end
 
