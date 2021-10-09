@@ -29,7 +29,7 @@ function Vector:__div(value)
 end
 
 function Vector:mag()
-    return math.sqrt(self.x * self.x + self.y + self.y)
+    return math.sqrt(self.x * self.x + self.y * self.y)
 end
 
 function Vector:norm()
