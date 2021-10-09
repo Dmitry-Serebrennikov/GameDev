@@ -6,8 +6,11 @@ function love.load()
     width = love.graphics.getWidth()
     height = love.graphics.getHeight()
     
-    love.graphics.setBackgroundColor(128 / 255, 128 / 255, 128 / 255)
-    
+    --love.graphics.setBackgroundColor(128 / 255, 128 / 255, 128 / 255)
+    --love.graphics.setBackgroundColor(153 / 255, 153 / 255, 255 / 255)
+    love.graphics.setBackgroundColor(255 / 255, 255 / 255, 255 / 255)
+    --love.graphics.setBackgroundColor(0 / 255, 0 / 255, 0 / 255)
+
     location = Vector:create(width/4, height/2)
     
     velocity = Vector:create(0, 0)
@@ -15,12 +18,11 @@ function love.load()
 
     location2 = Vector:create(3*width/4, height/3)
 
-    mover = Mover:create(location, velocity, 20, 1)
-    wmover = Mover:create(location2, velocity, 50, 5)
+    goldMover = Mover:create(location, velocity, 20, 1, {255 / 255, 215 / 255, 0 / 255})
+    silverMover = Mover:create(location2, velocity, 50, 5, {192 / 255, 192 / 255, 192 / 255})
     
-    --recBlue = Stateblock:create(width/3, height/3, width/4, height/4)
     recBlue = Stableblock:create(50, 20, 100, 80)
-    --recRed = Stateblock:create()
+    recRed = Stableblock:create(450, 20, 150, 100)
 
     gravity = Vector:create(0, 0.01)
     ------------Внешние силы-------------
@@ -34,8 +36,8 @@ function love.load()
 end
 
 function love.update()
-    mover:applyForce(gravity)
-    wmover:applyForce(gravity)
+    goldMover:applyForce(gravity)
+    silverMover:applyForce(gravity)
 
     --mover:applyForce(wind)
     --wmover:applyForce(wind)
@@ -47,22 +49,23 @@ function love.update()
     --   mover:applyForce(friction)
     --    wmover:applyForce(friction)
     --end
-    mover:update()
-    mover:checkBoundaries()
+    goldMover:update()
+    goldMover:checkBoundaries()
 
-    wmover:update()
-    wmover:checkBoundaries()
+    silverMover:update()
+    silverMover:checkBoundaries()
 
 end
 
 
 function love.draw()
-    mover:draw()
-    wmover:draw()
+    goldMover:draw()
+    silverMover:draw()
 
     recBlue:draw()
-    love.graphics.print(tostring(mover.velocity),  mover.location.x + mover.size, mover.location.y)
-    love.graphics.print(tostring(wmover.velocity),  wmover.location.x + wmover.size, wmover.location.y)
+    recRed:draw()
+    love.graphics.print(tostring(goldMover.velocity),  goldMover.location.x + goldMover.size, goldMover.location.y)
+    love.graphics.print(tostring(silverMover.velocity),  silverMover.location.x + silverMover.size, silverMover.location.y)
 
     --love.graphics.rectangle("fill", width/3, height/3, width/20, height/20)
     --love.graphics.setColor(r, g, b, a)
