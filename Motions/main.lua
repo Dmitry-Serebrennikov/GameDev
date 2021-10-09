@@ -38,8 +38,14 @@ end
 function love.update()
     goldMover:applyForce(gravity)
     silverMover:applyForce(gravity)
-
-    if goldMover.location.x > blueRec. 
+    ------------------does not working-----------------------
+    -- if goldMover.location.x > blueRec.width and 
+    --     goldMover.location.x < blueRec.width + blueRec.x and
+    --     goldMover.location.y > blueRec.height and
+    --     goldMover.location.y < blueRec.height + blueRec.y then
+    --         goldMover.velocity = Vector:__mul(0)
+    -- end 
+    ---------------------------------------------------------
     --mover:applyForce(wind)
     --wmover:applyForce(wind)
 
