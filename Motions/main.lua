@@ -8,12 +8,12 @@ function love.load()
     
     love.graphics.setBackgroundColor(128 / 255, 128 / 255, 128 / 255)
     
-    location = Vector:create(width/2, height/2)
+    location = Vector:create(width/4, height/2)
     
     velocity = Vector:create(0, 0)
     velocity2 = Vector:create(0, 0)
 
-    location2 = Vector:create(width/2, height/3)
+    location2 = Vector:create(3*width/4, height/3)
 
     mover = Mover:create(location, velocity, 20, 1)
     wmover = Mover:create(location2, velocity, 50, 5)
