@@ -2,14 +2,15 @@ Mover = {}
 
 Mover.__index = Mover
 
-function Mover:create(location, velocity, size, weight)
+function Mover:create(location, velocity, size, weight, color)
     local mover = {}
     setmetatable(mover, Mover)
     mover.location = location
     mover.velocity = velocity
     mover.acceleration = Vector:create(0, 0)
-    mover.size = size
+    mover.size = size or 1
     mover.weight = weight or 1
+    mover.color = color
     return mover
 end
 
@@ -37,7 +38,10 @@ function Mover:checkBoundaries()
 end
 
 function Mover:draw()
+    local r, g, b, a = love.graphics.getColor()
+    love.graphics.setColor(self.color) 
     love.graphics.circle("fill", self.location.x, self.location.y, self.size)
+    love.graphics.setColor(r, g, b, a)
 end
 
 function Mover:update()
