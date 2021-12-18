@@ -71,6 +71,7 @@ function love.draw()
     
     goldMover:draw()
     silverMover:draw()
+    love.graphics.setColor(0, 0, 1, 1)
     love.graphics.print(tostring(goldMover.velocity),  goldMover.location.x + goldMover.size, goldMover.location.y)
     love.graphics.print(tostring(silverMover.velocity),  silverMover.location.x + silverMover.size, silverMover.location.y)
 
