@@ -20,7 +20,7 @@ function love.load()
 
     goldMover = Mover:create(location, velocity, 20, 1, {255 / 255, 215 / 255, 0 / 255})
     silverMover = Mover:create(location2, velocity, 50, 5, {192 / 255, 192 / 255, 192 / 255})
-    ----------------------------width/height/x/y
+    
     blueRec = Stableblock:create(2 * width / 10, height / 10, 150, 300, {30 / 255, 144 / 255, 255 / 255})
     redRec = Stableblock:create(6 * width / 10, height / 10, 150, 300, {220 / 255, 20 / 255, 60 / 255})
 
@@ -49,13 +49,13 @@ function love.update()
     --mover:applyForce(wind)
     --wmover:applyForce(wind)
 
-    --friction = (mover.velocity * -1):norm()
+    friction = (goldMover.velocity * -1):norm()
     
-    --if friction then
-    --    friction:mul(0.005)
-    --   mover:applyForce(friction)
-    --    wmover:applyForce(friction)
-    --end
+    if friction then
+       friction:mul(0.005)
+       goldMover:applyForce(friction)
+       silverMover:applyForce(friction)
+    end
     goldMover:update()
     goldMover:checkBoundaries()
 
