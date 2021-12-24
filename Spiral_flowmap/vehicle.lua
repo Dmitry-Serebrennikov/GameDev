@@ -6,7 +6,7 @@ function Vehicle:create(x, y)
     setmetatable(vehicle, Vehicle)
     vehicle.velocity = Vector:create(0, 0)
     vehicle.acceleration = Vector:create(0, 0)
-    vehicle.location = Vector:create(x, y)
+    vehicle.location = Vector:create(0, 0)
     vehicle.r = 5
     vehicle.vertices = {0, -vehicle.r * 2, -vehicle.r, vehicle.r * 2, vehicle.r, vehicle.r * 2}
 

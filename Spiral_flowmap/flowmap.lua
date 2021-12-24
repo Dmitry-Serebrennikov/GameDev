@@ -11,25 +11,20 @@ function FlowMap:create(size)
 end
 
 function FlowMap:init()
-    love.math.setRandomSeed(11000)
-    local cols = width / self.size
-    local rows = height / self.size
-    local xoff = 0
-    local yoff = 0
-    
-    for i = 1, cols  do
-        yoff = 0 
+    local cols = (width / self.size)
+    local rows = (height / self.size)
+
+    for i = 1, cols do
         self.field[i] = {}
-        for j = 1, rows do 
-            local theta = math.map(love.math.noise(xoff, yoff), 0, 1, 0, math.pi * 2)
-            -- self.field[i][j] = Vector:create(1, 1)
-            -- self.field[i][j] = Vector:create(1, math.sin(i))
-            
-            self.field[i][j] = Vector:create(math.cos(theta), math.sin(theta))
-            yoff = yoff - 0.13
+        for j = 1, rows do
+
+            local y = j - rows / 2
+            local x = i - cols / 2
+
+            local vec = Vector:create(-1 * x - 10 * y, 10 * x - 1 * y)
+            self.field[i][j] = vec / vec:mag()
         end
-        xoff = xoff + 0.1
-    end 
+    end
 end
 
 function FlowMap:draw()
