@@ -7,7 +7,8 @@ function Bird:create()
     bird.downFlap = love.graphics.newImage("assets/sprites/yellowbird-downflap.png")
     bird.midFlap = love.graphics.newImage("assets/sprites/yellowbird-midflap.png")
     bird.upFlap = love.graphics.newImage("assets/sprites/yellowbird-upflap.png")
-    
+    bird.die_audio = love.audio.newSource("assets/audio/die.wav", "static")
+
     screen_width = 288
     screen_height = 512
 
@@ -42,6 +43,7 @@ end
 
 function Bird:checkCollision()
     if self.y < 0 or self.y > height - ground:getHeight() then
+        self.die_audio:play()
         Page = 'gameover_page'
         gameover_page.score = play_page.score
     end

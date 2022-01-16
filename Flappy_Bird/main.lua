@@ -6,6 +6,7 @@ require "vector"
 function love.load()
     
     background = love.graphics.newImage("assets/sprites/background-day.png")
+    night_background = love.graphics.newImage("assets/sprites/background-night.png")
     ground = love.graphics.newImage("assets/sprites/base.png")
 
     width = background:getWidth()
